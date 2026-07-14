@@ -1,10 +1,27 @@
 const cells = document.querySelectorAll('.cell');
 const statusText = document.getElementById('status');
+const mode = document.getElementById('mode');
+const change_mode = document.getElementById('change_mode');
 
 let currentPlayer = "X";
+// user can change the mode
+let gameMode = "player";
 let gameActive = true;
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
+const chagemode = (e)=>{
+    if(gameMode == "player"){
+        gameMode = "bot"
+    }else{
+        gameMode=("player")
+    }
+    mode.innerText=gameMode
+    
+    change_mode.innerText = gameMode=="bot"?"play with PLAYER":"play with BOT"
+    
+    restartGame();
+    
+}
 const winningConditions = [
     [0,1,2],
     [3,4,5],
@@ -31,6 +48,10 @@ function cellClicked() {
     this.textContent = currentPlayer;
 
     checkWinner();
+
+   if (gameMode === "bot" && currentPlayer === "O" && gameActive) {
+        setTimeout(makeBotMove, 300);
+    }
 }
 
 function checkWinner() {
@@ -45,6 +66,10 @@ function checkWinner() {
 
         if (a === b && b === c) {
             roundWon = true;
+            // Highlight the winning cells
+                condition.forEach(index => {
+                    cells[index].classList.add("winner");
+                });
             break;
         }
     }
@@ -74,5 +99,6 @@ function restartGame() {
 
     cells.forEach(cell => {
         cell.textContent = "";
+        cell.classList.remove("winner")
     });
 }

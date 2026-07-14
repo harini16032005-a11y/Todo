@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
 <div class="container">
     <h1>Tic-Tac-Toe</h1>
-
+    <button onclick="chagemode()" id="change_mode" >play with BOT</button>
+    <p>player X <span id="mode">player</span></p>
     <div id="status">Player X's Turn</div>
 
     <div class="board">
@@ -27,7 +29,7 @@
 
     <button onclick="restartGame()">Restart Game</button>
 </div>
-
+<script src="bot.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
