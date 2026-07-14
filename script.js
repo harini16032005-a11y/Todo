@@ -74,7 +74,12 @@ function checkWinner() {
         }
     }
 
+
     if (roundWon) {
+      party.confetti(document.body, {
+    count: party.variation.range(80, 120),
+    spread: 60,
+});
         statusText.textContent = `Player ${currentPlayer} Wins!`;
         gameActive = false;
         return;
